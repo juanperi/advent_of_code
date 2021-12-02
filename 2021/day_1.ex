@@ -10,7 +10,7 @@ reducer = fn numbers ->
 end
 
 result = reducer.(numbers)
-IO.inspect(result, label: "first challenge")
+IO.inspect(result, label: "Part 1")
 
 result =
   numbers
@@ -18,4 +18,4 @@ result =
   |> Enum.map(&Enum.sum/1)
   |> reducer.()
 
-IO.inspect(result, label: "second challenge")
+IO.inspect(result, label: "Part 2")
