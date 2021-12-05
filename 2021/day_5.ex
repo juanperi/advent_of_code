@@ -30,7 +30,7 @@ defmodule Support do
     do_fill(new_point, end_point, slope, [point | acc])
   end
 
-  def single_point?({_, [_]}), do: true
+  def single_point?({_, x}) when x == 1, do: true
   def single_point?({_, _}), do: false
 end
 
@@ -40,7 +40,7 @@ defmodule Main do
       Support.input()
       |> Enum.filter(&Support.straight_line?/1)
       |> Enum.flat_map(&Support.fill_points/1)
-      |> Enum.group_by(& &1)
+      |> Enum.frequencies()
       |> Enum.reject(&Support.single_point?/1)
       |> length
 
@@ -49,7 +49,7 @@ defmodule Main do
     overlapping_points =
       Support.input()
       |> Enum.flat_map(&Support.fill_points/1)
-      |> Enum.group_by(& &1)
+      |> Enum.frequencies()
       |> Enum.reject(&Support.single_point?/1)
       |> length
 
