@@ -25,11 +25,11 @@ defmodule Support do
     distance = Support.distance(array, mid_point, cost)
     next_distance = Support.distance(array, mid_point + 1, cost)
 
-    {next_min, next_max} =
+    {next_min, next_max, distance} =
       if distance < next_distance do
-        {min, mid_point}
+        {min, mid_point, distance}
       else
-        {mid_point + 1, max}
+        {mid_point + 1, max, next_distance}
       end
 
     walk(array, next_min, next_max, cost, distance)
