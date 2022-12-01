@@ -14,23 +14,30 @@ instructions =
       {:up, number}, {horizontal, depth} -> {horizontal, depth - number}
     end
   )
-IO.inspect "Part 1"
-IO.inspect horizontal, label: "horizontal"
-IO.inspect depth, label: "depth"
-IO.inspect horizontal * depth, label: "multiplication"
+
+IO.inspect("Part 1")
+IO.inspect(horizontal, label: "horizontal")
+IO.inspect(depth, label: "depth")
+IO.inspect(horizontal * depth, label: "multiplication")
 
 {horizontal, depth, aim} =
   instructions
   |> Enum.reduce(
     {0, 0, 0},
     fn
-      {:forward, number}, {horizontal, depth, aim} -> {horizontal + number, depth + aim * number, aim}
-      {:down, number}, {horizontal, depth, aim} -> {horizontal, depth, aim + number}
-      {:up, number}, {horizontal, depth, aim} -> {horizontal, depth, aim - number}
+      {:forward, number}, {horizontal, depth, aim} ->
+        {horizontal + number, depth + aim * number, aim}
+
+      {:down, number}, {horizontal, depth, aim} ->
+        {horizontal, depth, aim + number}
+
+      {:up, number}, {horizontal, depth, aim} ->
+        {horizontal, depth, aim - number}
     end
   )
-IO.inspect "Part 2"
-IO.inspect horizontal, label: "horizontal"
-IO.inspect depth, label: "depth"
-IO.inspect aim, label: "aim"
-IO.inspect horizontal * depth, label: "multiplication"
+
+IO.inspect("Part 2")
+IO.inspect(horizontal, label: "horizontal")
+IO.inspect(depth, label: "depth")
+IO.inspect(aim, label: "aim")
+IO.inspect(horizontal * depth, label: "multiplication")
