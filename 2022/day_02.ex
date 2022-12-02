@@ -33,10 +33,9 @@ defmodule Day02 do
     |> Enum.sum()
   end
 
-  @scores [A: 1, B: 2, C: 3, X: 1, Y: 2, Z: 3]
-  def score_gesture(value) do
-    @scores[value]
-  end
+  def score_gesture(value) when value in [:A, :X], do: 1
+  def score_gesture(value) when value in [:B, :Y], do: 2
+  def score_gesture(value) when value in [:C, :Z], do: 3
 
   @hinted_scores [:A, :B, :C]
   def update_hinted_gesture({them, hint}) do
