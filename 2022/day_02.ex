@@ -3,7 +3,7 @@ defmodule Day02 do
     input
     |> reshape()
     |> Enum.map(fn {_, me} = match ->
-      score_match(match, &score_gesture/1) + score_gesture(me)
+      score_match(match) + score_gesture(me)
     end)
     |> Enum.sum()
   end
@@ -14,7 +14,7 @@ defmodule Day02 do
     |> Enum.map(fn match ->
       {_, me} = match = get_hinted_gesture(match)
 
-      score_match(match, &score_gesture/1) + score_gesture(me)
+      score_match(match) + score_gesture(me)
     end)
     |> Enum.sum()
   end
@@ -38,9 +38,9 @@ defmodule Day02 do
     {them, Enum.at(@hinted_scores, index)}
   end
 
-  def score_match({them, me}, scorer_fn) do
-    score_them = scorer_fn.(them)
-    score_me = scorer_fn.(me)
+  def score_match({them, me}) do
+    score_them = score_gesture(them)
+    score_me = score_gesture(me)
 
     cond do
       score_them == score_me -> 3
