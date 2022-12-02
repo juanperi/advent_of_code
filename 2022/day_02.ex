@@ -1,4 +1,18 @@
 defmodule Day02 do
+  require ExUnit.Assertions
+  import ExUnit.Assertions
+
+  @input File.read!("day_02.txt")
+  @test_input File.read!("day_02_test.txt")
+
+  def run() do
+    assert part_1(@test_input) == 15
+    IO.inspect(part_1(@input), label: "Part 1:")
+
+    assert part_2(@test_input) == 12
+    IO.inspect(part_2(@input), label: "Part 2:")
+  end
+
   def part_1(input) do
     input
     |> reshape()
@@ -61,23 +75,4 @@ defmodule Day02 do
   end
 end
 
-ExUnit.start(autorun: false)
-
-defmodule Test do
-  use ExUnit.Case, async: true
-
-  @input File.read!("day_02.txt")
-  @test_input File.read!("day_02_test.txt")
-
-  test "part 1 example" do
-    assert Day02.part_1(@test_input) === 15
-    IO.inspect(Day02.part_1(@input), label: "\nPart 1:")
-  end
-
-  test "part 2 example" do
-    assert Day02.part_2(@test_input) === 12
-    IO.inspect(Day02.part_2(@input), label: "\nPart 2:")
-  end
-end
-
-ExUnit.run()
+Day02.run()
