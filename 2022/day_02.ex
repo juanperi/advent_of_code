@@ -26,7 +26,7 @@ defmodule Day02 do
     input
     |> reshape()
     |> Enum.map(fn match ->
-      {_, me} = match = get_hinted_gesture(match)
+      {_, me} = match = update_hinted_gesture(match)
 
       score_match(match) + score_gesture(me)
     end)
@@ -39,7 +39,7 @@ defmodule Day02 do
   end
 
   @hinted_scores [:A, :B, :C]
-  def get_hinted_gesture({them, hint}) do
+  def update_hinted_gesture({them, hint}) do
     direction =
       case hint do
         :X -> -1
