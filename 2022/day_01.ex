@@ -1,6 +1,7 @@
 defmodule Day01 do
   def run() do
     input = Support.input()
+
     result =
       input
       |> Enum.map(&Enum.sum/1)

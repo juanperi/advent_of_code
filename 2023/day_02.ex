@@ -40,7 +40,9 @@ defmodule Day02.Parser do
   end
 
   defp matches_to_map(raw) do
-    for [k, v] <- Enum.chunk_every(raw, 2), do: {String.to_atom(v), k}, into: %{blue: 0, red: 0, green: 0}
+    for [k, v] <- Enum.chunk_every(raw, 2),
+        do: {String.to_atom(v), k},
+        into: %{blue: 0, red: 0, green: 0}
   end
 
   defp game_to_map(raw) do
@@ -69,8 +71,8 @@ defmodule Day02 do
     assert part_1(example) == 8
     IO.inspect(part_1(@input), label: "Part 1")
 
-     assert part_2(example) == 2286
-     IO.inspect(part_2(@input), label: "Part 2")
+    assert part_2(example) == 2286
+    IO.inspect(part_2(@input), label: "Part 2")
   end
 
   def part_1(input) do
@@ -85,12 +87,14 @@ defmodule Day02 do
 
   def part_2(input) do
     games = Parser.parse(input)
+
     games
     |> Enum.map(fn game ->
       pulls =
         Enum.reduce(game.pulls, %{green: 0, red: 0, blue: 0}, fn pull, acc ->
           Map.merge(acc, pull, fn _k, v1, v2 -> Enum.max([v1, v2]) end)
         end)
+
       pulls.green * pulls.red * pulls.blue
     end)
     |> Enum.sum()

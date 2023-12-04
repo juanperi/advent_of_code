@@ -12,6 +12,7 @@ defmodule Day01 do
       a1b2c3d4e5f
       treb7uchet
       """
+
     assert part_1(example) == 142
     IO.inspect(part_1(@input), label: "Part 1")
 
@@ -25,6 +26,7 @@ defmodule Day01 do
       zoneight234
       7pqrstsixteen
       """
+
     assert part_2(example) == 281
     IO.inspect(part_2(@input), label: "Part 2")
   end
@@ -34,9 +36,9 @@ defmodule Day01 do
     |> String.split("\n")
     |> Enum.map(fn line ->
       for codepoint <- String.to_charlist(line),
-        codepoint >= 48,
-        codepoint <= 57 do
-          codepoint - 48
+          codepoint >= 48,
+          codepoint <= 57 do
+        codepoint - 48
       end
     end)
     |> Enum.reduce(0, fn line, acc ->
@@ -50,7 +52,9 @@ defmodule Day01 do
   @patterns ~w(one two three four five six seven eight nine)
   def part_2(input) do
     input
-    |> String.replace(@patterns, fn number -> to_string(Enum.find_index(@patterns, & &1 == number) + 1) end)
+    |> String.replace(@patterns, fn number ->
+      to_string(Enum.find_index(@patterns, &(&1 == number)) + 1)
+    end)
     |> part_1()
   end
 end
